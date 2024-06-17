@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    // JPA
+    // Spring data JPA, Hibernate, AOP, jdbc
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // Lombok Annotation
