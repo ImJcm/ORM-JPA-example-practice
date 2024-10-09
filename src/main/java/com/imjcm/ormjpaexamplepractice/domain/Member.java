@@ -1,10 +1,10 @@
 package com.imjcm.ormjpaexamplepractice.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -15,22 +15,24 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "username")
     private String username;
 
     @Column(name = "age", nullable = false)
     private int age;
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Food> foodList;
+
     @Builder
     public Member(String username, int age) {
         this.username = username;
         this.age = age;
+        this.foodList = new ArrayList<>();
     }
 
-    public static Member createMember(String username, int age) {
-        return Member.builder()
-                .username(username)
-                .age(age)
-                .build();
+    public void addFoodList(Food food) {
+        this.foodList.add(food);
+        food.setMember(this);
     }
 }
