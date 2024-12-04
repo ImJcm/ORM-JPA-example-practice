@@ -18,7 +18,9 @@ import java.util.List;
 @TableGenerator(
         name = "MEMBER_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
-        pkColumnValue = "MEMBER_SEQ", allocationSize = 1
+        pkColumnValue = "MEMBER_SEQ",
+        initialValue = 1,   // default = 0
+        allocationSize = 1
 )
 public class Member extends TimeStamped {
     @Id
