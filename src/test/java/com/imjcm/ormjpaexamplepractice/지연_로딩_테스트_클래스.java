@@ -2,6 +2,7 @@ package com.imjcm.ormjpaexamplepractice;
 
 import com.imjcm.ormjpaexamplepractice.domain.Food;
 import com.imjcm.ormjpaexamplepractice.domain.Member;
+import com.imjcm.ormjpaexamplepractice.global.Role;
 import com.imjcm.ormjpaexamplepractice.repository.FoodRepository;
 import com.imjcm.ormjpaexamplepractice.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 @SpringBootTest
 public class 지연_로딩_테스트_클래스 {
@@ -31,21 +31,24 @@ public class 지연_로딩_테스트_클래스 {
     }
 
     @BeforeEach
-    @Rollback(value = false)
     void init() {
         clear_db();
 
         Member member = Member.builder()
                 .username("JCM")
                 .age(29)
+                .description("jcm")
+                .role(Role.USER)
                 .build();
 
         Food food1 = Food.builder()
                 .name("food1")
+                .price(1000L)
                 .build();
 
         Food food2 = Food.builder()
                 .name("food2")
+                .price(2000L)
                 .build();
 
         member.addFoodList(food1);
