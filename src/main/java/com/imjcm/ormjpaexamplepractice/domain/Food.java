@@ -10,7 +10,9 @@ import lombok.*;
 @TableGenerator(
         name = "FOOD_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
-        pkColumnValue = "FOOD_SEQ", allocationSize = 1
+        pkColumnValue = "FOOD_SEQ",
+        initialValue = 1,
+        allocationSize = 1
 )
 public class Food {
     @Id
