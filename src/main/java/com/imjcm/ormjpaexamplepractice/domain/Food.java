@@ -6,10 +6,18 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "food")
+//@Table(name = "food")
+@TableGenerator(
+        name = "FOOD_SEQ_GENERATOR",
+        table = "MY_SEQUENCES",
+        pkColumnValue = "FOOD_SEQ", allocationSize = 1
+)
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE,
+        generator = "FOOD_SEQ_GENERATOR"
+    )
     private Long id;
 
     @Column(name = "name")
