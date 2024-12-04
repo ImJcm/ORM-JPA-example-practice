@@ -5,16 +5,27 @@ import com.imjcm.ormjpaexamplepractice.global.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
+/*@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
         name = "NAME_AGE_UNIQUE",
         columnNames = {"username","age"}
-)})
+)})*/
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCES",
+        pkColumnValue = "MEMBER_SEQ", allocationSize = 1
+)
 public class Member extends TimeStamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE,
+        generator = "MEMBER_SEQ_GENERATOR"
+    )
     private long id;
 
     @Column(name = "username", nullable = false, length = 10)
@@ -43,18 +54,17 @@ public class Member extends TimeStamped {
         this.description = description;
     }
 
-    /*@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Food> foodList;*/
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Food> foodList = new ArrayList<>();
 
-    /*@Builder
+    @Builder
     public Member(String username, int age) {
         this.username = username;
         this.age = age;
-        this.foodList = new ArrayList<>();
     }
 
     public void addFoodList(Food food) {
         this.foodList.add(food);
         food.setMember(this);
-    }*/
+    }
 }
