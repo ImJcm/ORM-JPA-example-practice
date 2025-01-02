@@ -5,17 +5,18 @@ import com.imjcm.ormjpaexamplepractice.global.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-//@Table(name = "member")
-@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
+@Table(name = "member")
+/*@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
         name = "NAME_AGE_UNIQUE",
         columnNames = {"username","age"}
-)})
+)})*/
 /*@TableGenerator(
         name = "MEMBER_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
@@ -34,6 +35,12 @@ public class Member extends TimeStamped {
     @Column(name = "username", nullable = false, length = 10)
     private String username;
 
+    @Column(name = "nickname", nullable = false, unique = true, length = 11)
+    private String nickname;
+
+    @Column(name = "rank", precision = 1, scale = 1)
+    private BigDecimal rank;
+
     @Column(name = "age", nullable = false)
     private int age;
 
@@ -42,7 +49,7 @@ public class Member extends TimeStamped {
     private Role role;
 
     @Lob
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "varchar(30) default 'EMPTY'")
     private String description;
 
     @Builder
