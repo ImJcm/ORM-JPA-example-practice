@@ -66,5 +66,68 @@ public class 컬럼_매핑_속성_테스트 {
         memberRepository.save(member_2);
     }
 
+    @Test
+    @DisplayName("uniqueConstraints 속성 테스트 - 동일한 값을 갖는 컬럼이 있는 경우 - username 값은 같지 않고, age 값이 같은 경우")
+    public void uniqueConstraints_속성_테스트_동일한_값을_갖는_컬럼이_있는_경우_username_is_not_dupulicate_but_age_is_dupulicate() {
+        Member member_1 = Member.builder()
+                .username("member1")
+                .age(27)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        Member member_2 = Member.builder()
+                .username("member2")
+                .age(27)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        memberRepository.save(member_1);
+        memberRepository.save(member_2);
+    }
+
+    @Test
+    @DisplayName("uniqueConstraints 속성 테스트 - 동일한 값을 갖는 컬럼이 있는 경우 - username 값은 같고, age 값이 같지 않은 경우")
+    public void uniqueConstraints_속성_테스트_동일한_값을_갖는_컬럼이_있는_경우_username_is_dupulicate_but_age_is_not_dupulicate() {
+        Member member_1 = Member.builder()
+                .username("member")
+                .age(28)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        Member member_2 = Member.builder()
+                .username("member")
+                .age(27)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        memberRepository.save(member_1);
+        memberRepository.save(member_2);
+    }
+
+    @Test
+    @DisplayName("uniqueConstraints 속성 테스트 - 동일한 값을 갖는 컬럼이 있는 경우 - username, age 모두 같은 경우")
+    public void uniqueConstraints_속성_테스트_동일한_값을_갖는_컬럼이_있는_경우_username_age_is_dupulicate() {
+        Member member_1 = Member.builder()
+                .username("member")
+                .age(27)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        Member member_2 = Member.builder()
+                .username("member")
+                .age(27)
+                .role(Role.USER)
+                .description("hello")
+                .build();
+
+        memberRepository.save(member_1);
+        memberRepository.save(member_2);
+    }
+
 
 }

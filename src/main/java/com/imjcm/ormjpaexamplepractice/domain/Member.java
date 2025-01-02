@@ -11,11 +11,11 @@ import java.util.List;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "member")
-/*@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
+//@Table(name = "member")
+@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
         name = "NAME_AGE_UNIQUE",
         columnNames = {"username","age"}
-)})*/
+)})
 /*@TableGenerator(
         name = "MEMBER_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
@@ -31,10 +31,10 @@ public class Member extends TimeStamped {
     )*/
     private long id;
 
-    @Column(name = "username", nullable = false, unique = true, length = 10)
+    @Column(name = "username", nullable = false, length = 10)
     private String username;
 
-    @Column(name = "age", nullable = false, unique = true)
+    @Column(name = "age", nullable = false)
     private int age;
 
     @Column(name = "role", nullable = false)
