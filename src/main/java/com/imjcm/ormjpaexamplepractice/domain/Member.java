@@ -11,29 +11,30 @@ import java.util.List;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Table(name = "member")
 /*@Table(name = "member", uniqueConstraints = {@UniqueConstraint(
         name = "NAME_AGE_UNIQUE",
         columnNames = {"username","age"}
 )})*/
-@TableGenerator(
+/*@TableGenerator(
         name = "MEMBER_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
         pkColumnValue = "MEMBER_SEQ",
         initialValue = 1,   // default = 0
         allocationSize = 1
-)
+)*/
 public class Member extends TimeStamped {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.TABLE,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@GeneratedValue(strategy = GenerationType.TABLE,
         generator = "MEMBER_SEQ_GENERATOR"
-    )
+    )*/
     private long id;
 
-    @Column(name = "username", nullable = false, length = 10)
+    @Column(name = "username", nullable = false, unique = true, length = 10)
     private String username;
 
-    @Column(name = "age", nullable = false)
+    @Column(name = "age", nullable = false, unique = true)
     private int age;
 
     @Column(name = "role", nullable = false)
