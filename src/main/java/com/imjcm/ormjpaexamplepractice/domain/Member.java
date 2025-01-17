@@ -45,8 +45,8 @@ public class Member extends TimeStamped {
     private int age;
 
     @Column(name = "role", nullable = false)
-    @Enumerated(value = EnumType.ORDINAL) //Role의 데이터가 순서인 값이 저장된다.
-    //@Enumerated(value = EnumType.STRING)
+    //@Enumerated(value = EnumType.ORDINAL) //Role의 데이터가 순서인 값이 저장된다.
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
     @Lob
