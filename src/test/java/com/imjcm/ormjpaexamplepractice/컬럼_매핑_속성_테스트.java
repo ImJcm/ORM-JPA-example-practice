@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @SpringBootTest
 public class 컬럼_매핑_속성_테스트 {
     @Autowired
@@ -127,6 +130,60 @@ public class 컬럼_매핑_속성_테스트 {
 
         memberRepository.save(member_1);
         memberRepository.save(member_2);
+    }
+
+    @Test
+    @DisplayName("TemporalType.DATE 속성 테스트 - 날짜 타입 컬럼 저장")
+    public void temporalType_Date_속성_테스트_날짜_타입_컬럼_저장() {
+        Member member = Member.builder()
+                .username("member")
+                .age(27)
+                .role(Role.USER)
+                .birthday(new Date(1997 - 1900, Calendar.SEPTEMBER,9))
+                .description("hello")
+                .build();
+
+        Member findMember_from_persist = memberRepository.save(member);
+
+        long member_id = findMember_from_persist.getId();
+
+        Member findMember_from_database = memberRepository.findById(member_id).orElse(null);
+
+        Assertions.assertEquals(findMember_from_database.getBirthday().getYear(),1997 - 1900);
+        Assertions.assertEquals(findMember_from_database.getBirthday().getMonth(),Calendar.SEPTEMBER);
+        Assertions.assertEquals(findMember_from_database.getBirthday().getDate(),9);
+        // Date.getDay() : 요일 - sunday, monday, tuesday, wednesday, thursday, friday, saturday
+    }
+
+    @Test
+    @DisplayName("TemporalType.TIME 속성 테스트 - 날짜 타입 컬럼 저장")
+    public void temporalType_TIME_속성_테스트_날짜_타입_컬럼_저장() {
+        Member member = Member.builder()
+                .username("member")
+                .age(27)
+                .role(Role.USER)
+                .birthday(new Date(1997 - 1900, Calendar.SEPTEMBER,9))
+                .description("hello")
+                .build();
+
+        member.update_birthtime(new Date(1997 - 1900, Calendar.SEPTEMBER,9,1,35,19));
+
+        Member findMember_from_persist = memberRepository.save(member);
+
+        long member_id = findMember_from_persist.getId();
+
+        Member findMember_from_database = memberRepository.findById(member_id).orElse(null);
+
+        Assertions.assertEquals(findMember_from_database.getBirthtime().getHours(),1);
+        Assertions.assertEquals(findMember_from_database.getBirthtime().getMinutes(),35);
+        Assertions.assertEquals(findMember_from_database.getBirthtime().getSeconds(),19);
+    }
+
+    @Test
+    @DisplayName("TemporalType.TIMESTAMP 속성 테스트 - 날짜 타입 컬럼 저장")
+    public void temporalType_TIMESTAMP_속성_테스트_날짜_타입_컬럼_저장() {
+        Date date = new Date(1997 - 1900, Calendar.SEPTEMBER, 9, 1, 35, 19);
+        // Date 생성 시, Year, Month, Date, Hours, Minutes, Seconds를 지정하여 생성
     }
 
 

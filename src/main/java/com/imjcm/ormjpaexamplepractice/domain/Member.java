@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -49,16 +50,30 @@ public class Member extends TimeStamped {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    //@Temporal(value = TemporalType.TIMESTAMP) // Date + Time
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "birthday", updatable = false, nullable = false)
+    private Date birthday;
+
+    @Temporal(value = TemporalType.TIME)
+    @Column(name = "birthtime")
+    private Date birthtime;
+
     @Lob
     @Column(name = "description", nullable = false, columnDefinition = "varchar(30) default 'EMPTY'")
     private String description;
 
     @Builder
-    public Member(String username, int age, Role role, String description) {
+    public Member(String username, int age, Role role, Date birthday, String description) {
         this.username = username;
         this.age = age;
         this.role = role;
+        this.birthday = birthday;
         this.description = description;
+    }
+
+    public void update_birthtime(Date time) {
+        this.birthtime = time;
     }
 
     public void update(String description) {
@@ -68,11 +83,11 @@ public class Member extends TimeStamped {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Food> foodList = new ArrayList<>();
 
-    @Builder
+    /*@Builder
     public Member(String username, int age) {
         this.username = username;
         this.age = age;
-    }
+    }*/
 
     public void addFoodList(Food food) {
         this.foodList.add(food);
