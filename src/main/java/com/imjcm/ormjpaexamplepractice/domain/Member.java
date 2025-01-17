@@ -35,17 +35,18 @@ public class Member extends TimeStamped {
     @Column(name = "username", nullable = false, length = 10)
     private String username;
 
-    @Column(name = "nickname", nullable = false, unique = true, length = 11)
+    /*@Column(name = "nickname", nullable = false, unique = true, length = 11)
     private String nickname;
 
     @Column(name = "rank", precision = 1, scale = 1)
-    private BigDecimal rank;
-
+    private BigDecimal rank;*/
+    
     @Column(name = "age", nullable = false)
     private int age;
 
     @Column(name = "role", nullable = false)
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(value = EnumType.ORDINAL) //Role의 데이터가 순서인 값이 저장된다.
+    //@Enumerated(value = EnumType.STRING)
     private Role role;
 
     @Lob
