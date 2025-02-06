@@ -64,6 +64,9 @@ public class Member extends TimeStamped {
     private String description;
     //private byte[] lobByte; - MySQL : lobByte Type
 
+    @Transient
+    private String tempStr = "Temp value";
+
     @Builder
     public Member(String username, int age, Role role, Date birthday, String description) {
         this.username = username;
