@@ -85,6 +85,11 @@ public class Member extends TimeStamped {
         this.description = description;
     }
 
+    @Access(AccessType.PROPERTY)
+    public String getTempStr() {
+        return tempStr;
+    }
+
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Food> foodList = new ArrayList<>();
 
