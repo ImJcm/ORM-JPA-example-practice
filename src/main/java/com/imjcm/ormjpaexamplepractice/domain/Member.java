@@ -25,6 +25,7 @@ import java.util.List;
         initialValue = 1,   // default = 0
         allocationSize = 1
 )*/
+//@Access(AccessType.FIELD)
 public class Member extends TimeStamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
