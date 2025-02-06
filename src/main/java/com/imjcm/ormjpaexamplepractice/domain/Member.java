@@ -62,6 +62,7 @@ public class Member extends TimeStamped {
     @Lob
     @Column(name = "description", nullable = false, columnDefinition = "varchar(30) default 'EMPTY'")
     private String description;
+    //private byte[] lobByte; - MySQL : lobByte Type
 
     @Builder
     public Member(String username, int age, Role role, Date birthday, String description) {
