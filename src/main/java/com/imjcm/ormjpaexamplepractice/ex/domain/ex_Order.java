@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name = "ex_Order")
+@Table(name = "EX_ORDER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class ex_Order {
