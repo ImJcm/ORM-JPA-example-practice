@@ -1,4 +1,4 @@
-package com.imjcm.ormjpaexamplepractice.global;
+package com.imjcm.ormjpaexamplepractice.prac.global;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
