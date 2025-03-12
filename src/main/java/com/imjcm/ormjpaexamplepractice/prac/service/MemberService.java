@@ -1,6 +1,6 @@
-package com.imjcm.ormjpaexamplepractice.service;
+package com.imjcm.ormjpaexamplepractice.prac.service;
 
-import com.imjcm.ormjpaexamplepractice.domain.Member;
+import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
 
 import java.util.List;
 

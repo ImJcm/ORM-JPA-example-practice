@@ -1,9 +1,5 @@
 package com.imjcm.ormjpaexamplepractice;
 
-import com.imjcm.ormjpaexamplepractice.domain.Member;
-import com.imjcm.ormjpaexamplepractice.global.Role;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

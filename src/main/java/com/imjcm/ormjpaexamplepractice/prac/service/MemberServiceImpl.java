@@ -1,7 +1,7 @@
-package com.imjcm.ormjpaexamplepractice.service;
+package com.imjcm.ormjpaexamplepractice.prac.service;
 
-import com.imjcm.ormjpaexamplepractice.domain.Member;
-import com.imjcm.ormjpaexamplepractice.repository.MemberRepository;
+import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
+import com.imjcm.ormjpaexamplepractice.prac.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
