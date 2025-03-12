@@ -1,15 +1,14 @@
 package com.imjcm.ormjpaexamplepractice;
 
-import com.imjcm.ormjpaexamplepractice.domain.Member;
-import com.imjcm.ormjpaexamplepractice.global.Role;
-import com.imjcm.ormjpaexamplepractice.repository.MemberRepository;
+import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
+import com.imjcm.ormjpaexamplepractice.prac.global.Role;
+import com.imjcm.ormjpaexamplepractice.prac.repository.MemberRepository;
 //import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -166,7 +165,7 @@ public class 컬럼_매핑_속성_테스트 {
                 .description("hello")
                 .build();
 
-        member.update_birthtime(new Date(1997 - 1900, Calendar.SEPTEMBER,9,1,35,19));
+        member.setBirthtime(new Date(1997 - 1900, Calendar.SEPTEMBER,9,1,35,19));
 
         Member findMember_from_persist = memberRepository.save(member);
 
