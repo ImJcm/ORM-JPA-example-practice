@@ -1,6 +1,6 @@
-package com.imjcm.ormjpaexamplepractice.repository;
+package com.imjcm.ormjpaexamplepractice.prac.repository;
 
-import com.imjcm.ormjpaexamplepractice.domain.Member;
+import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
