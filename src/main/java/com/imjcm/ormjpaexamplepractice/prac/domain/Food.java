@@ -1,4 +1,4 @@
-package com.imjcm.ormjpaexamplepractice.domain;
+package com.imjcm.ormjpaexamplepractice.prac.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,20 +6,20 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-//@Table(name = "food")
-@TableGenerator(
+@Table(name = "food")
+/*@TableGenerator(
         name = "FOOD_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
         pkColumnValue = "FOOD_SEQ",
         initialValue = 1,
         allocationSize = 1
-)
+)*/
 public class Food {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.TABLE,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@GeneratedValue(strategy = GenerationType.TABLE,
         generator = "FOOD_SEQ_GENERATOR"
-    )
+    )*/
     private Long id;
 
     @Column(name = "name")
@@ -27,11 +27,6 @@ public class Food {
 
     @Column(name = "price")
     private Long price;
-
-    @Setter
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
 
     @Builder
     public Food(String name, Long price) {
