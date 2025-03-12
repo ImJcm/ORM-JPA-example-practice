@@ -1,14 +1,11 @@
-package com.imjcm.ormjpaexamplepractice.domain;
+package com.imjcm.ormjpaexamplepractice.prac.domain;
 
-import com.imjcm.ormjpaexamplepractice.global.Role;
-import com.imjcm.ormjpaexamplepractice.global.TimeStamped;
+import com.imjcm.ormjpaexamplepractice.prac.global.Role;
+import com.imjcm.ormjpaexamplepractice.prac.global.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -56,10 +53,12 @@ public class Member extends TimeStamped {
     @Column(name = "birthday", updatable = false, nullable = false)
     private Date birthday;
 
+    @Setter
     @Temporal(value = TemporalType.TIME)
     @Column(name = "birthtime")
     private Date birthtime;
 
+    @Setter
     @Lob
     @Column(name = "description", nullable = false, columnDefinition = "varchar(30) default 'EMPTY'")
     private String description;
@@ -67,6 +66,10 @@ public class Member extends TimeStamped {
 
     @Transient
     private String tempStr = "Temp value";
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     @Builder
     public Member(String username, int age, Role role, Date birthday, String description) {
@@ -77,30 +80,13 @@ public class Member extends TimeStamped {
         this.description = description;
     }
 
-    public void update_birthtime(Date time) {
-        this.birthtime = time;
-    }
-
-    public void update(String description) {
-        this.description = description;
-    }
-
-    @Access(AccessType.PROPERTY)
+    /*@Access(AccessType.PROPERTY)
     public String getTempStr() {
         return tempStr;
-    }
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Food> foodList = new ArrayList<>();
-
-    /*@Builder
-    public Member(String username, int age) {
-        this.username = username;
-        this.age = age;
     }*/
 
-    public void addFoodList(Food food) {
-        this.foodList.add(food);
-        food.setMember(this);
+    public void applyCart(Cart cart) {
+        this.cart = cart;
+        cart.setMember(this);
     }
 }
