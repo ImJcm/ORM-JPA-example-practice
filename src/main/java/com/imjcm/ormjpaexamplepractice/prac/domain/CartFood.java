@@ -19,8 +19,14 @@ public class CartFood {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(
+    @ManyToOne(
+            optional = true,
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+            //targetEntity = Entity.class (Generic Type)
+    )
+    @JoinColumn(name = "food_id")
+    /*@JoinColumn(
             name = "food_id",
             referencedColumnName = "FOOD_ID",
             unique = false,
@@ -29,7 +35,7 @@ public class CartFood {
             updatable = true,
             columnDefinition = "varchar(30) default 'EMPTY'",
             table = "food"
-    )
+    )*/
     private Food food;
 
     @Builder
