@@ -19,12 +19,13 @@ public class CartFood {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne(
+    @ManyToOne
+    /*@ManyToOne(
             optional = true,
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
             //targetEntity = Entity.class (Generic Type)
-    )
+    )*/
     @JoinColumn(name = "food_id")
     /*@JoinColumn(
             name = "food_id",
