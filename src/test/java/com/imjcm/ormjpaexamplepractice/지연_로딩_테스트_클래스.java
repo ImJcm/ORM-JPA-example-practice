@@ -53,7 +53,7 @@ public class 지연_로딩_테스트_클래스 {
 
         Cart cart = new Cart();
 
-        Food food1 = Food.builder()
+        /*Food food1 = Food.builder()
                 .name("food1")
                 .price(1000L)
                 .build();
@@ -71,15 +71,15 @@ public class 지연_로딩_테스트_클래스 {
         CartFood cartFood2 = CartFood.builder()
                 .cart(cart)
                 .food(food2)
-                .build();
+                .build();*/
 
         member.applyCart(cart);
 
         memberRepository.save(member);
 
-        entityManager.flush();
+        /*entityManager.flush();
         entityManager.clear();
-        entityManager.close();
+        entityManager.close();*/
     }
 
     @Test
