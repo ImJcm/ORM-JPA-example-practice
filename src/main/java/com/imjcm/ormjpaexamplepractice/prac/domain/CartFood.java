@@ -44,4 +44,15 @@ public class CartFood {
         this.cart = cart;
         this.food = food;
     }
+
+    // @Setter
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    // @Setter
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
 }
