@@ -9,6 +9,7 @@ import lombok.*;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "CART_ID")
     private long id;
 
     @Setter
