@@ -13,6 +13,6 @@ public class Cart {
     private long id;
 
     @Setter
-    @OneToOne(mappedBy = "cart")
+    @OneToOne(mappedBy = "cart") // 연관관계 주인을 설정 - Member.cart
     private Member member;
 }
