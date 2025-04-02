@@ -68,7 +68,7 @@ public class Member extends TimeStamped {
     private String tempStr = "Temp value";
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "cart_id") // Cart Entity's Id - Table Name
     private Cart cart;
 
     @Builder
