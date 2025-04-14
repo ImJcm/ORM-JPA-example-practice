@@ -48,9 +48,16 @@ public class 양방향_테스트 {
         //cart.setMember(member);
 
         memberRepository.save(member);
-        cartRepository.save(cart);
+        //cartRepository.save(cart); // member.cart - @OneToOne.cascade.CascadeALL : 영속성 전이로 member save 시, cart 또한 save 한다.
     }
 
+    /*
+        member.applyCart() 내부 로직 변경해야 정상 작동
+        public void applyCart(Cart cart) {
+            this.cart = cart;
+            //cart.setMember(this); <- 주석 처리 해야 일방적인 연관관계를 설정한다.
+        }
+     */
     @Test
     public void member_cart_양방향_연관관계_테스트_실패() {
         // given
@@ -61,6 +68,19 @@ public class 양방향_테스트 {
 
         // then
         Assertions.assertNull(exist_member);
+    }
+
+    @Test
+    public void member_cart_양방향_연관관계_테스트_성공() {
+        // given
+        member.applyCart(cart);
+        //cart.setMember(member); // member.applyCart 내부의 로직이 member.setCart(cart) + cart.setMember(this) 이므로 생략 가능하다.
+
+        // when
+        Member exist_member = cart.getMember();
+
+        // then
+        Assertions.assertNotNull(exist_member);
     }
 
 }

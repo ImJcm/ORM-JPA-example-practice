@@ -68,8 +68,7 @@ public class Member extends TimeStamped {
     private String tempStr = "Temp value";
 
     // 연관관계의 주인 - 외래 키 관리
-    //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id") // Cart Entity's Id - Table Name
     private Cart cart;
 
@@ -89,6 +88,6 @@ public class Member extends TimeStamped {
 
     public void applyCart(Cart cart) {
         this.cart = cart;
-        //cart.setMember(this);
+        cart.setMember(this);
     }
 }
