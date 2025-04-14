@@ -69,7 +69,7 @@ public class Member extends TimeStamped {
 
     // 연관관계의 주인 - 외래 키 관리
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id") // Cart Entity's Id - Table Name
+    @JoinColumn(name = "cart_id") // Cart Entity's Id - Table Name_id(default) = Column Name
     private Cart cart;
 
     @Builder
