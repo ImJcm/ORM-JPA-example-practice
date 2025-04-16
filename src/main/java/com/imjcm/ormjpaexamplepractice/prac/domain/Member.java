@@ -88,6 +88,10 @@ public class Member extends TimeStamped {
 
     // 연관관계 편의 메소드 - 양방향 연관관계 설정을 하나의 메소드로 관리
     public void applyCart(Cart cart) {
+        if(this.cart != null) {
+            this.cart.setMember(null);
+        }
+
         this.cart = cart;
         cart.setMember(this);
     }
