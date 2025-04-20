@@ -23,12 +23,6 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartFood> cartFoods = new ArrayList<>();
 
-    @Builder
-    public Cart(Member member, List<CartFood> cartFoods) {
-        this.member = member;
-        this.cartFoods = cartFoods;
-    }
-
     // 연관관계 매핑 편의 메서드
     public void setMember(Member member) {
         if(this.member != null) {
