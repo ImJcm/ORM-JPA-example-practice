@@ -6,8 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "EX_MEMBER")
+@Table(name = "ex_member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class ex_Member {
@@ -18,6 +21,9 @@ public class ex_Member {
 
     private String name;
     private String address;
+
+    @OneToMany(mappedBy = "member")
+    private List<ex_Order> orders = new ArrayList<>();
 
     @Builder
     public ex_Member(String name, String address) {
@@ -30,5 +36,8 @@ public class ex_Member {
 
     // @Setter
     public void setAddress(String address) { this.address = address; }
+
+    // @Setter
+    public void setOrders(List<ex_Order> orders) { this.orders = orders; }
 
 }
