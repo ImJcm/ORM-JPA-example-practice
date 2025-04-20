@@ -73,7 +73,7 @@ public class 지연_로딩_테스트_클래스 {
                 .food(food2)
                 .build();*/
 
-        member.applyCart(cart);
+        cart.setMember(member);
 
         memberRepository.save(member);
 
