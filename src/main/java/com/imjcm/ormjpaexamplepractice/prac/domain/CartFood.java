@@ -1,10 +1,7 @@
 package com.imjcm.ormjpaexamplepractice.prac.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -15,10 +12,12 @@ public class CartFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
+    @Setter
     @ManyToOne
     /*@ManyToOne(
             optional = true,
@@ -44,15 +43,4 @@ public class CartFood {
         this.cart = cart;
         this.food = food;
     }
-
-    // @Setter
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    // @Setter
-    public void setFood(Food food) {
-        this.food = food;
-    }
-
 }
