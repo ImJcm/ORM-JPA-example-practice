@@ -7,6 +7,7 @@ import com.imjcm.ormjpaexamplepractice.prac.domain.Food;
 import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
 import com.imjcm.ormjpaexamplepractice.prac.global.Role;
 import com.imjcm.ormjpaexamplepractice.prac.repository.CartFoodRepository;
+import com.imjcm.ormjpaexamplepractice.prac.repository.CartRepository;
 import com.imjcm.ormjpaexamplepractice.prac.repository.FoodRepository;
 import com.imjcm.ormjpaexamplepractice.prac.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
@@ -31,6 +32,9 @@ public class JPQL_테스트 {
     private MemberRepository memberRepository;
 
     @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
     private CartFoodRepository cartFoodRepository;
 
     @Autowired
@@ -38,6 +42,7 @@ public class JPQL_테스트 {
 
     void clear_db() {
         memberRepository.deleteAll();
+        cartRepository.deleteAll();
     }
 
     @BeforeEach
@@ -52,8 +57,6 @@ public class JPQL_테스트 {
                 .role(Role.USER)
                 .build();
 
-        Cart cart = new Cart();
-
         Member member2 = Member.builder()
                 .username("CMJ")
                 .age(29)
@@ -62,7 +65,8 @@ public class JPQL_테스트 {
                 .role(Role.USER)
                 .build();
 
-        Cart cart2 = new Cart();
+        memberRepository.save(member);
+        memberRepository.save(member2);
 
         Food food1 = Food.builder()
                 .name("food1")
@@ -74,36 +78,40 @@ public class JPQL_테스트 {
                 .price(2000L)
                 .build();
 
-        // builder 내부에서 setter 진행
+        foodRepository.save(food1);
+        foodRepository.save(food2);
+
+        Cart cart = new Cart();
+        cart.setMember(member);
+
+        Cart cart2 = new Cart();
+        cart2.setMember(member2);
+
+        cartRepository.save(cart);
+        cartRepository.save(cart2);
+
         CartFood cartFood1 = CartFood.builder()
                 .cart(cart)
                 .food(food1)
                 .build();
 
-        // builder 내부에서 setter 진행
         CartFood cartFood2 = CartFood.builder()
                 .cart(cart)
                 .food(food2)
                 .build();
 
-        // builder 내부에서 setter 진행
         CartFood cartFood3 = CartFood.builder()
                 .cart(cart2)
                 .food(food2)
                 .build();
 
-        member.applyCart(cart);
-        memberRepository.save(member);
-
-        member2.applyCart(cart2);
-        memberRepository.save(member2);
-
-        foodRepository.save(food1);
-        foodRepository.save(food2);
-
         cartFoodRepository.save(cartFood1);
         cartFoodRepository.save(cartFood2);
         cartFoodRepository.save(cartFood3);
+
+        cart.addCartFood(cartFood1);
+        cart.addCartFood(cartFood2);
+        cart2.addCartFood(cartFood3);
 
         /*entityManager.flush();
         entityManager.clear();
@@ -113,10 +121,10 @@ public class JPQL_테스트 {
     @Test
     @DisplayName("EntityManager.createQuery() - 엔티티_조회_used_by_JPQL")
     public void 엔티티_조회_used_by_JPQL() {
-        String jpql = "select cf from CartFood cf join cf.cart c where c.member.username =: memberName";
+        String jpql = "select cf from CartFood cf join cart c where c.member.username =: memberName";
 
         List<CartFood> resultList = entityManager.createQuery(jpql, CartFood.class)
-                .setParameter("memberName", "jcm")
+                .setParameter("memberName", "JCM")
                 .getResultList();
 
         assertThat(resultList.size()).isEqualTo(2);
