@@ -31,6 +31,7 @@ public class Member extends TimeStamped {
     )*/
     private long id;
 
+    @Setter
     @Column(name = "username", nullable = false, length = 10)
     private String username;
 
@@ -39,15 +40,18 @@ public class Member extends TimeStamped {
 
     @Column(name = "rank", precision = 1, scale = 1)
     private BigDecimal rank;*/
-    
+
+    @Setter
     @Column(name = "age", nullable = false)
     private int age;
 
+    @Setter
     @Column(name = "role", nullable = false)
     //@Enumerated(value = EnumType.ORDINAL) //Role의 데이터가 순서인 값이 저장된다.
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @Setter
     //@Temporal(value = TemporalType.TIMESTAMP) // Date + Time
     @Temporal(value = TemporalType.DATE)
     @Column(name = "birthday", updatable = false, nullable = false)
@@ -67,9 +71,8 @@ public class Member extends TimeStamped {
     @Transient
     private String tempStr = "Temp value";
 
-    // 연관관계의 주인 - 외래 키 관리
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id") // Cart Entity's Id - Table Name_id(default) = Column Name
+    @Setter
+    @OneToOne(mappedBy = "member") // 연관관계 주인을 설정 - Cart.member
     private Cart cart;
 
     @Builder
@@ -85,14 +88,4 @@ public class Member extends TimeStamped {
     public String getTempStr() {
         return tempStr;
     }*/
-
-    // 연관관계 편의 메소드 - 양방향 연관관계 설정을 하나의 메소드로 관리
-    public void applyCart(Cart cart) {
-        if(this.cart != null) {
-            this.cart.setMember(null);
-        }
-
-        this.cart = cart;
-        cart.setMember(this);
-    }
 }
