@@ -5,7 +5,9 @@ import com.imjcm.ormjpaexamplepractice.prac.global.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -75,13 +77,18 @@ public class Member extends TimeStamped {
     @OneToOne(mappedBy = "member") // 연관관계 주인을 설정 - Cart.member
     private Cart cart;
 
+    @Setter
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
     @Builder
-    public Member(String username, int age, Role role, Date birthday, String description) {
+    public Member(String username, int age, Role role, Date birthday, String description, List<Order> orders) {
         this.username = username;
         this.age = age;
         this.role = role;
         this.birthday = birthday;
         this.description = description;
+        this.orders = orders;
     }
 
     /*@Access(AccessType.PROPERTY)
