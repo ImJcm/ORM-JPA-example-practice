@@ -28,9 +28,13 @@ public class Item {
     @Column(name = "price")
     private Long price;
 
+    @Column(name = "stockquantity")
+    private int stockquantity;
+
     @Builder
-    public Item(String name, Long price) {
+    public Item(String name, Long price, int stockquantity) {
         this.name = name;
         this.price = price;
+        this.stockquantity = stockquantity;
     }
 }
