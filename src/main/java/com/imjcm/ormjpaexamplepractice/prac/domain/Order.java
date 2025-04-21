@@ -1,5 +1,6 @@
 package com.imjcm.ormjpaexamplepractice.prac.domain;
 
+import com.imjcm.ormjpaexamplepractice.ex.global.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,13 +27,18 @@ public class Order {
     private Date orderDate;
 
     @Setter
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    @Setter
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Builder
-    public Order(Member member, Date orderDate, List<OrderItem> orderItems) {
+    public Order(Member member, Date orderDate, OrderStatus orderStatus, List<OrderItem> orderItems) {
         this.member = member;
         this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
         this.orderItems = orderItems;
     }
 
