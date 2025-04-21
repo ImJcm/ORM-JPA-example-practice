@@ -1,12 +1,10 @@
 package com.imjcm.ormjpaexamplepractice;
 
 import com.imjcm.ormjpaexamplepractice.prac.domain.Cart;
-import com.imjcm.ormjpaexamplepractice.prac.domain.CartFood;
-import com.imjcm.ormjpaexamplepractice.prac.domain.Food;
 import com.imjcm.ormjpaexamplepractice.prac.domain.Member;
 import com.imjcm.ormjpaexamplepractice.prac.global.Role;
 import com.imjcm.ormjpaexamplepractice.prac.repository.CartRepository;
-import com.imjcm.ormjpaexamplepractice.prac.repository.FoodRepository;
+import com.imjcm.ormjpaexamplepractice.prac.repository.ItemRepository;
 import com.imjcm.ormjpaexamplepractice.prac.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -29,7 +27,7 @@ public class 지연_로딩_테스트_클래스 {
     private CartRepository cartRepository;
 
     @Autowired
-    private FoodRepository foodRepository;
+    private ItemRepository itemRepository;
 
     @Autowired
     private EntityManager entityManager;
