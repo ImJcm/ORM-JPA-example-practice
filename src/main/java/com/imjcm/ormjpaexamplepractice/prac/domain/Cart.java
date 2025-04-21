@@ -21,7 +21,7 @@ public class Cart {
 
     @Setter
     @OneToMany(mappedBy = "cart")
-    private List<CartFood> cartFoods = new ArrayList<>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
     // 연관관계 매핑 편의 메서드
     public void setMember(Member member) {
@@ -33,8 +33,8 @@ public class Cart {
         this.member.setCart(this);
     }
 
-    public void addCartFood(CartFood cartfood) {
-        this.cartFoods.add(cartfood);
-        cartfood.setCart(this);
+    public void addCartItem(CartItem cartItem) {
+        this.cartItems.add(cartItem);
+        cartItem.setCart(this);
     }
 }
