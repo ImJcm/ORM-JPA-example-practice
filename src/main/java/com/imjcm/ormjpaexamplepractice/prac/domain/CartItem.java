@@ -6,8 +6,8 @@ import lombok.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "cart_food")
-public class CartFood {
+@Table(name = "cart_item")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,22 +25,22 @@ public class CartFood {
             cascade = CascadeType.ALL
             //targetEntity = Entity.class (Generic Type)
     )*/
-    @JoinColumn(name = "food_id")
+    @JoinColumn(name = "item_id")
     /*@JoinColumn(
-            name = "food_id",
-            referencedColumnName = "FOOD_ID",
+            name = "item_id",
+            referencedColumnName = "ITEM_ID",
             unique = false,
             nullable = true,
             insertable = true,
             updatable = true,
             columnDefinition = "varchar(30) default 'EMPTY'",
-            table = "food"
+            table = "item"
     )*/
-    private Food food;
+    private Item item;
 
     @Builder
-    public CartFood(Cart cart, Food food) {
+    public CartItem(Cart cart, Item item) {
         this.cart = cart;
-        this.food = food;
+        this.item = item;
     }
 }
