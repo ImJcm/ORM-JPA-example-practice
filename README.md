@@ -17,13 +17,15 @@ ORM-JPA 프로그래밍 교재를 학습하고 제공하는 예제와 개념을 
 https://cm97.notion.site/ORM-JPA-1aa205f3d35344f2a4871e004cc52aae?pvs=4
 
 ***
-- 쇼핑몰 프로젝트 유사 실습 (개념 응용 코드 & 테스트 코드) 
+- 쇼핑몰 프로젝트 유사 실습
+  
+  - ERD & UML & 정리 ( https://www.notion.so/cm97/1dc51c90daad8028af2ffdc7424c7b4d?pvs=4 )
 
-  https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/main/java/com/imjcm/ormjpaexamplepractice/prac
+  - 개념 응용 코드 ( https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/main/java/com/imjcm/ormjpaexamplepractice/prac )
 
-  https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/test/java/com/imjcm/ormjpaexamplepractice
+  - 테스트 코드 ( https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/test/java/com/imjcm/ormjpaexamplepractice )
 
 
-- 실습 예제
+- 교재 실습 예제
 
   https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/main/java/com/imjcm/ormjpaexamplepractice/ex
