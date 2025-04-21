@@ -6,19 +6,19 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "food")
+@Table(name = "item")
 /*@TableGenerator(
-        name = "FOOD_SEQ_GENERATOR",
+        name = "ITEM_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
-        pkColumnValue = "FOOD_SEQ",
+        pkColumnValue = "ITEM_SEQ",
         initialValue = 1,
         allocationSize = 1
 )*/
-public class Food {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /*@GeneratedValue(strategy = GenerationType.TABLE,
-        generator = "FOOD_SEQ_GENERATOR"
+        generator = "ITEM_SEQ_GENERATOR"
     )*/
     private Long id;
 
@@ -29,7 +29,7 @@ public class Food {
     private Long price;
 
     @Builder
-    public Food(String name, Long price) {
+    public Item(String name, Long price) {
         this.name = name;
         this.price = price;
     }
