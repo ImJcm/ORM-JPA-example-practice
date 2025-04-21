@@ -17,7 +17,7 @@ ORM-JPA 프로그래밍 교재를 학습하고 제공하는 예제와 개념을 
 https://cm97.notion.site/ORM-JPA-1aa205f3d35344f2a4871e004cc52aae?pvs=4
 
 ***
-- 개념 응용 코드 (쇼핑몰 프로젝트 유사)
+- 개념 응용 코드 & 테스트 코드(쇼핑몰 프로젝트 유사)
 
   https://github.com/ImJcm/ORM-JPA-example-practice/tree/master/src/main/java/com/imjcm/ormjpaexamplepractice/prac
 
