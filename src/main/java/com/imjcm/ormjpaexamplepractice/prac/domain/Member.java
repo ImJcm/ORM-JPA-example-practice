@@ -74,7 +74,7 @@ public class Member extends TimeStamped {
     private String tempStr = "Temp value";
 
     @Setter
-    @OneToOne(mappedBy = "member") // 연관관계 주인을 설정 - Cart.member
+    @OneToOne(mappedBy = "member") // 연관관계 주인을 설정 - Cart.member, Member - 주 테이블, Cart - 대상 테이블로 Cart가 Member에 종속된 관계를 부여
     private Cart cart;
 
     @Setter
