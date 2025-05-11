@@ -14,9 +14,9 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // 연관관계의 주인 - 외래 키 관리
+    // 연관관계의 주인 - 외래 키 관리, Member - 주 테이블, Cart - 대상 테이블로 Cart가 Member에 종속된 관계를 부여
     @OneToOne
-    @JoinColumn(name = "member_id", unique = true) // Member Entity's Id - Table Name_id(default) = Column Name
+    @JoinColumn(name = "member_id", unique = true, nullable = false) // Member Entity's Id - Table Name_id(default) = Column Name
     private Member member;
 
     @Setter
