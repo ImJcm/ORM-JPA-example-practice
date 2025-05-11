@@ -16,7 +16,7 @@ public class Cart {
 
     // 연관관계의 주인 - 외래 키 관리
     @OneToOne
-    @JoinColumn(name = "member_id") // Member Entity's Id - Table Name_id(default) = Column Name
+    @JoinColumn(name = "member_id", unique = true) // Member Entity's Id - Table Name_id(default) = Column Name
     private Member member;
 
     @Setter
