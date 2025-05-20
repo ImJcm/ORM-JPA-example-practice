@@ -34,6 +34,18 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    /*
+        @ManyToMany + @JoinTable를 사용하여 다대다 연관관계를 구성
+        해당 방법을 사용하면 Order_Item 연결 테이블을 생성하여 다대다 관계를 구성한다.
+        하지만 이 방법은 OrderStatus, OrderItem, ... 과 같은 컬럼을 추가할 수 없다.
+     */
+    @ManyToMany
+    @JoinTable(name = "Order_Item",
+        joinColumns = @JoinColumn(name = "order_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<Item> items = new ArrayList<Item>();
+
+
     @Builder
     public Order(Member member, Date orderDate, OrderStatus orderStatus, List<OrderItem> orderItems) {
         this.member = member;
